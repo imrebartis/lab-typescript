@@ -18,21 +18,21 @@ var TodoItem = (function () {
 }());
 var TodoList = (function () {
     function TodoList() {
-        this.todoItems = [];
+        this.toDoArray = [];
     }
     TodoList.prototype.addTask = function (task) {
-        this.todoItems.push(task);
-        console.log('=========== NEW TASK =========== Task ' + task + ' added to the list');
-        console.log('Number of items: ' + this.todoItems.length);
+        this.toDoArray.push(task);
+        console.log("=========== NEW TASK ==========  Task " + task + " added to the list");
+        console.log("Number of items: " + this.toDoArray.length);
     };
     TodoList.prototype.listAllTasks = function () {
-        for (var i in this.todoItems) {
-            console.log(this.todoItems[i]);
+        for (var i in this.toDoArray) {
+            console.log(this.toDoArray[i]);
         }
     };
     TodoList.prototype.deleteTask = function (task) {
-        var index = this.todoItems.indexOf(task);
-        this.todoItems.splice(index, 1);
+        var deleteItem = this.toDoArray.indexOf(task);
+        this.toDoArray.splice(deleteItem, 1);
     };
     return TodoList;
 }());
@@ -48,6 +48,6 @@ console.log("Number of items:", myTodos.addTask(task3));
 console.log("Number of items:", myTodos.addTask(task4));
 console.log("Number of items:", myTodos.addTask(task5));
 myTodos.listAllTasks();
-console.log("Number of items:", myTodos.deleteTask(task3.taskTitle));
-console.log("Number of items:", myTodos.deleteTask(task4.taskTitle));
-console.log("Number of items:", myTodos.deleteTask(task5.taskTitle));
+console.log("Number of items:", myTodos.deleteTask(task3));
+console.log("Number of items:", myTodos.deleteTask(task4));
+console.log("Number of items:", myTodos.deleteTask(task5));

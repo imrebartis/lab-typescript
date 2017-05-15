@@ -1,47 +1,45 @@
 // Add the reference to the interface
-import {TodoItemInterface,TodoListInterface} from "./interfaces";
+import {TodoItemInterface, TodoListInterface} from "./interfaces"
 // Create class TodoItem that implements the corresponding interface
 
-class TodoItem implements TodoItemInterface {
-  constructor (public taskTitle: string) {}
+class TodoItem implements TodoItemInterface{
+  constructor(public taskTitle: string, ){}
 
-  updatedAt: Date;
   status: boolean = false;
+  updatedAt: Date;
 
-  toggleStatus():void {
-    if (this.status === false) {
+  toggleStatus():void{
+    if (this.status === false){
       this.status = true;
-    }
-    else {
+    } else {
       this.status = false;
     }
+      this.updatedAt = new Date(new Date().getDate());
+  }
+}
+// Create class TodoList that implements the corresponding interface
+class TodoList implements TodoListInterface{
+  toDoArray:Array<TodoItem> =[];
 
-    this.updatedAt = new Date(new Date().getDate());
+  addTask(task):void{
+    this.toDoArray.push(task);
+    console.log("=========== NEW TASK ==========  Task " + task + " added to the list");
+    console.log("Number of items: " + this.toDoArray.length);
+  }
+
+  listAllTasks():void{
+    for (let i in this.toDoArray){
+      console.log(this.toDoArray[i]);
+    }
+  }
+
+  deleteTask(task):void{
+    let deleteItem = this.toDoArray.indexOf(task);
+    this.toDoArray.splice(deleteItem, 1);
   }
 }
 
-class TodoList implements TodoListInterface {
-    todoItems: Array<TodoItem> = [];
 
-   addTask(task):void{
-     this.todoItems.push(task);
-     console.log('=========== NEW TASK =========== Task ' + task + ' added to the list');
-     console.log('Number of items: ' + this.todoItems.length);
-   }
-
-   listAllTasks():void{
-     for (let i in this.todoItems) {
-   console.log(this.todoItems[i]);
-   }
- }
-
-   deleteTask(task:string):void{
-     let index = this.todoItems.indexOf(task);
-     this.todoItems.splice(index, 1);
-   }
-}
-
-// Create class TodoList that implements the corresponding interface
 
 // Execution
 let task1 = new TodoItem('This is our first task');
@@ -58,7 +56,7 @@ console.log("Number of items:", myTodos.addTask(task3));
 console.log("Number of items:", myTodos.addTask(task4));
 console.log("Number of items:", myTodos.addTask(task5));
 myTodos.listAllTasks();
-console.log("Number of items:", myTodos.deleteTask(task3.taskTitle));
-console.log("Number of items:", myTodos.deleteTask(task4.taskTitle));
-console.log("Number of items:", myTodos.deleteTask(task5.taskTitle));
-//myTodos.listUncomplete();
+console.log("Number of items:", myTodos.deleteTask(task3));
+console.log("Number of items:", myTodos.deleteTask(task4));
+console.log("Number of items:", myTodos.deleteTask(task5));
+// myTodos.listUncomplete();
